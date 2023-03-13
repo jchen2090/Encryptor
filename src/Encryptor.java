@@ -68,25 +68,35 @@ public class Encryptor {
      */
     public String encryptMessage(String message) {
         String encrypted = "";
-        int amtBlocks = message.length() / (numCols * numRows);
+        int amtLetterBlocks = message.length() / (numCols * numRows);
+        int amtSpaces = numCols * numRows;
 
-        if (message.length() == 0) {
-            return message;
+        if (message.length() == 0 || message.equals("")) {
+            return encrypted;
         }
 
-        //todo: finish this
-//        for (int i = 0; i < amtBlocks; i++) {
-//            fillBlock(message.substring(0, numCols));
-//            encryptBlock();
-//
-//            for (int col = 0; col < letterBlock[0].length; col++) {
-//                for (int row = 0; row < letterBlock.length; row++) {
-//                    encrypted += letterBlock[row][col];
-//                }
-//            }
-//
-//            message = message.substring(6);
-//        }
+       for (int i = 0; i <= amtLetterBlocks; i++) {
+            if (message.equals("")) {
+                return encrypted;
+            }
+            else if (message.length() >= amtSpaces) {
+                fillBlock(message.substring(0, amtSpaces));
+            }
+            else {
+                fillBlock(message.substring(0, message.length()));
+            }
+           encryptBlock();
+
+           for (int col = 0; col < letterBlock[0].length; col++) {
+               for (int row = 0; row < letterBlock.length; row++) {
+                   encrypted += letterBlock[row][col];
+               }
+           }
+
+           if (message.length() >= amtSpaces) {
+            message = message.substring(amtSpaces);
+           }
+       }
         return encrypted;
 
     }
