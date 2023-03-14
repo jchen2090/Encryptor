@@ -3,11 +3,11 @@ import java.util.Arrays;
 public class EncryptorTester {
     public static void main(String[] args) {
         // --------------------------------
-        // ---- TEST PART A: fillBlock ----
+        // ---- TEST PART A: fillBlockRowMajor ----
         // --------------------------------
         System.out.println("---- TESTING PART A ----");
         Encryptor encryptor1 = new Encryptor(3, 5);
-        encryptor1.fillBlock("Meet at noon");
+        encryptor1.fillBlockRowMajor("Meet at noon");
 
         String[][] expected1 = {{"M", "e", "e", "t", " "},
                 {"a", "t", " ", "n", "o"},
@@ -26,7 +26,7 @@ public class EncryptorTester {
         }
 
         Encryptor encryptor2 = new Encryptor(3, 5);
-        encryptor2.fillBlock("Meet at midnight");
+        encryptor2.fillBlockRowMajor("Meet at midnight");
 
         String[][] expected2 = {{"M", "e", "e", "t", " "},
                 {"a", "t", " ", "m", "i"},
@@ -45,7 +45,7 @@ public class EncryptorTester {
         }
 
         Encryptor encryptor3 = new Encryptor(4, 3);
-        encryptor3.fillBlock("That's me!");
+        encryptor3.fillBlockRowMajor("That's me!");
 
         String[][] expected3 = {{"T", "h", "a"},
                 {"t", "'", "s"},
@@ -65,7 +65,7 @@ public class EncryptorTester {
         }
 
         Encryptor encryptor = new Encryptor(3, 4);
-        encryptor.fillBlock("hello");
+        encryptor.fillBlockRowMajor("hello");
 
         String[][] expected4 = {{"h", "e", "l", "l"},
                 {"o", "A", "A", "A"},
@@ -90,7 +90,7 @@ public class EncryptorTester {
         //   -----------------------------------
         System.out.println("\n---- TESTING PART B ----");
         Encryptor encryptor4 = new Encryptor(2, 3);
-        encryptor4.fillBlock("ABCDEF");
+        encryptor4.fillBlockRowMajor("ABCDEF");
         String actualEncryptedBlock1 = encryptor4.encryptBlock();
         String expectedEncryptedBlock1 = "ADBECF";
         if (actualEncryptedBlock1.equals(expectedEncryptedBlock1)) {
@@ -100,7 +100,7 @@ public class EncryptorTester {
           System.out.println("EXPECTED: " + expectedEncryptedBlock1);
           System.out.println("  ACTUAL: " + actualEncryptedBlock1);
         }
-        encryptor4.fillBlock("Meet a");
+        encryptor4.fillBlockRowMajor("Meet a");
         String actualEncryptedBlock2 = encryptor4.encryptBlock();
         String expectedEncryptedBlock2 = "Mte ea";
         if (actualEncryptedBlock2.equals(expectedEncryptedBlock2)) {
@@ -112,7 +112,7 @@ public class EncryptorTester {
         }
 
         Encryptor encryptor5 = new Encryptor(4, 2);
-        encryptor5.fillBlock("ABCDEFGHIJK");
+        encryptor5.fillBlockRowMajor("ABCDEFGHIJK");
         String actualEncryptedBlock3 = encryptor5.encryptBlock();
         String expectedEncryptedBlock3 = "ACEGBDFH";
         if (actualEncryptedBlock3.equals(expectedEncryptedBlock3)) {
@@ -182,7 +182,7 @@ public class EncryptorTester {
           System.out.println("  ACTUAL: " + actualEncrypted5);
         }
 
-    /*
+    
         // -------------------------------------
         // ---- TEST PART D: decryptMessage ----
         // -------------------------------------
@@ -240,7 +240,7 @@ public class EncryptorTester {
           System.out.println("EXPECTED: " + expectedDecrypted6);
           System.out.println("  ACTUAL: " + actualDecrypted6);
         }
-    */
+    
     }
 
     public static void print2DArray(String[][] arr) {
